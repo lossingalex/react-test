@@ -44,6 +44,7 @@ after_success:
   # Update package.json based on the git tag we just created
   - npm --no-git-tag-version version from-git
   - git add package.json
+  - cat package.json
   - git commit -m "[skip ci] bump version"
   - git log -n 5
   - git push origin develop
