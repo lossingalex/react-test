@@ -1,6 +1,10 @@
 language: node_js
 node_js:
 - '7'
+install:
+  # Install any dependencies required for building your site here.
+  # `awscli` is required for invalidation of CloudFront distributions.
+  - pip install awscli
 before_install:
   - npm install
 script:
@@ -11,16 +15,22 @@ deploy:
   # builds of your repo's master branch (e.g., after you merge a PR).
   on:
     branch: master
-  provider: s3
-  # You can refer to environment variables from Travis repo settings!
-  access_key_id: $AWS_ACCESS_KEY_ID
-  secret_access_key: $AWS_SECRET_ACCESS_KEY
-  region: ap-southeast-1
-  # Name of the S3 bucket to which your site should be uploaded.
-  bucket: gfg.pricing-engine.uat
-  # Prevent Travis from deleting your built site so it can be uploaded.
+
+  provider: script
+  script: 
+    - aws s3 sync build s3://gfg.pricing-engine.uat --delete
   skip_cleanup: true
-  # Path to a directory containing your built site.
-  local_dir: build
-  # Set the Cache-Control header.
-  cache_control: "max-age=21600"
+
+  # provider: s3
+  # # You can refer to environment variables from Travis repo settings!
+  # access_key_id: $AWS_ACCESS_KEY_ID
+  # secret_access_key: $AWS_SECRET_ACCESS_KEY
+  # region: ap-southeast-1
+  # # Name of the S3 bucket to which your site should be uploaded.
+  # bucket: gfg.pricing-engine.uat
+  # # Prevent Travis from deleting your built site so it can be uploaded.
+  # skip_cleanup: true
+  # # Path to a directory containing your built site.
+  # local_dir: build
+  # # Set the Cache-Control header.
+  # cache_control: "max-age=21600"
