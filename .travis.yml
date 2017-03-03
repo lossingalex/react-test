@@ -3,8 +3,8 @@ node_js:
 - '7'
 install:
   # Install any dependencies required for building your site here.
-  # `awscli` is required for invalidation of CloudFront distributions.
-  - pip install awscli
+  # `awscli` is required for invalidation of CloudFront distributions and sync file to s# bucket
+  - pip install --user awscli
 before_install:
   - npm install
 script:
@@ -16,11 +16,15 @@ deploy:
   on:
     branch: master
 
+  # s3 sync of build folder, with delete of inexisting file 
+  # Environmenet variable are expecting to be set for aws to run :
+  # AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_DEFAULT_REGION
   provider: script
   script: 
     - aws s3 sync build s3://gfg.pricing-engine.uat --delete
   skip_cleanup: true
 
+  # s3 travis deploment plugins, but no --delete sync
   # provider: s3
   # # You can refer to environment variables from Travis repo settings!
   # access_key_id: $AWS_ACCESS_KEY_ID
