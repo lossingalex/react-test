@@ -9,6 +9,10 @@ before_install:
   - npm install
 script:
   - npm run build
+branches:
+  except:
+    - /^build-[0-9a-z\-]*/
+  
 deploy:
   # Control deployment by setting a value for `on`. Setting the `branch`
   # option to `master` means Travis will only attempt a deployment on
@@ -41,7 +45,7 @@ deploy:
 
 
 after_success:
-  - git config --global user.email ""
+  - git config --global user.email "builds@travis-ci.com"
   - git config --global user.name "Travis CI"
   - export GIT_TAG=build-$TRAVIS_BRANCH-$(date -u "+%Y-%m-%d-%H-%M-%S")-$TRAVIS_BUILD_NUMBER
   - git tag $GIT_TAG -a -m "Generated tag from TravisCI build $TRAVIS_BUILD_NUMBER"
