@@ -24,7 +24,7 @@ deploy:
     - aws s3 sync build s3://gfg.pricing-engine.uat --delete
   skip_cleanup: true
 
-  # s3 travis deploment plugins, but no --delete sync
+  # s3 travis using deployment plugins, but no --delete sync
   # provider: s3
   # # You can refer to environment variables from Travis repo settings!
   # access_key_id: $AWS_ACCESS_KEY_ID
