@@ -23,6 +23,7 @@ deploy:
   # Build "images" on develop merge
   - provider: script
     script: cicd_scripts/build.sh
+    skip_cleanup: true
     on:
       branch: develop
 
