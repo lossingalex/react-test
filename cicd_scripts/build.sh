@@ -11,8 +11,6 @@ TARGET_BUILD_BRANCH='uat'
 BUILD_ID=${TRAVIS_BUILD_NUMBER}
 
 
-git checkout $SOURCE_BRANCH
-
 #TODO check if can work withuot modifying existing global credentials
 echo "== Setting GIT credentials and checking branches =="
 git config credential.helper "store --file=.git/credentials"
@@ -20,12 +18,8 @@ echo "https://${GH_TOKEN}:@github.com" > .git/credentials
 git config --global user.email "builds@travis-ci.com"
 git config --global user.name "Travis CI"
 
-git remote show origin
-git remote update
+git remote set-branches --add origin $TARGET_BUILD_BRANCH
 git fetch
-git fetch --all
-git branch
-git remote -v
 git branch -avv
 git checkout -b $TARGET_BUILD_BRANCH origin/$TARGET_BUILD_BRANCH
 
