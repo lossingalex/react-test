@@ -1,6 +1,9 @@
 ## Change Log
 
-### upcoming (2017/03/07 06:19 +00:00)
+### upcoming (2017/03/07 06:31 +00:00)
+- [e5a59c0](https://github.com/lossingalex/react-test/commit/e5a59c0c9f5118f7dc77628664310c69c4140b22) Merge branch 'develop' of github.com:lossingalex/react-test into develop
+- [da5cc59](https://github.com/lossingalex/react-test/commit/da5cc59bd1323e7d55ff8bed816c7c82eaf15254) test fix travis
+- [81487af](https://github.com/lossingalex/react-test/commit/81487aff6ca4f2b500991bf8c8e4ae62169171be) [skip ci] Bump version v0.1.24 + Update Changelog
 - [03ed73e](https://github.com/lossingalex/react-test/commit/03ed73ec2bc59e89d06283e6f6b49d5d5dc21571) Merge branch 'develop' of github.com:lossingalex/react-test into develop
 - [d784029](https://github.com/lossingalex/react-test/commit/d784029811398f0b5ff054835b2dd48ddd8dae2f) force bild folder commit
 - [3424770](https://github.com/lossingalex/react-test/commit/342477052cf3e798ef7980255a41377d1f382191) [skip ci] Bump version v0.1.23 + Update Changelog
@@ -12,12 +15,12 @@
 - [25b707c](https://github.com/lossingalex/react-test/commit/25b707cfa00549ed69950882838e8878d4ff81d0) update build process
 - [eb754e9](https://github.com/lossingalex/react-test/commit/eb754e903a97582b8d5304691486f3b0b99c40b1) Merge branch 'develop' of github.com:lossingalex/react-test into develop
 - [7b42c22](https://github.com/lossingalex/react-test/commit/7b42c220dac2ede642f060d02e3b8bb089bb4aef) build shrinkwrap and release files
-- [#2](https://github.com/lossingalex/react-test/pull/2) Merge pull request #2 from lossingalex/feature/pr-with-message (@lossingalex)
+- [#2](https://github.com/lossingalex/react-test/pull/2) Feature/pr with message confirm (@lossingalex)
 - [bbca57c](https://github.com/lossingalex/react-test/commit/bbca57c20625d243c34ecf9ba3562f095e363ae3) test pr for changelog again
 
 ### v0.1.22 (2017/03/07 03:01 +00:00)
 - [da31e0a](https://github.com/lossingalex/react-test/commit/da31e0acdedd37bae56016271482bf2827d51862) [skip ci] Bump version v0.1.22
-- [#1](https://github.com/lossingalex/react-test/pull/1) Merge pull request #1 from lossingalex/feature/test-pr (@lossingalex)
+- [#1](https://github.com/lossingalex/react-test/pull/1) Feature/test pr (@lossingalex)
 - [e2627b7](https://github.com/lossingalex/react-test/commit/e2627b76f5aa577677cb6bb24a6fd24c521dab87) test pr for changelog
 - [6874482](https://github.com/lossingalex/react-test/commit/687448281281d8e578bc77daf29a86a434bb370c) test for changelog
 - [7bf27b3](https://github.com/lossingalex/react-test/commit/7bf27b39a33f78bd93d28436bb6d20033ca17ed3) fix(test): test again again
