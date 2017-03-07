@@ -7,7 +7,8 @@ install:
   - pip install --user awscli
 before_install:
   - npm install
-script:
+  - npm install -g github-changes
+install:
   - npm run build
 
 

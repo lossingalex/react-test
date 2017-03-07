@@ -7,7 +7,7 @@ OWNER='lossingalex'
 REPO='react-test'
 SOURCE_BRANCH='develop'
 TARGET_BUILD_BRANCH='uat'
-BUILD_ID=$TRAVIS_BUILD_ID
+BUILD_ID=${TRAVIS_BUILD_ID}
 
 #TODO check if can work withuot modifying existing global credentials
 echo "== Setting GIT credentials and checking branches =="
