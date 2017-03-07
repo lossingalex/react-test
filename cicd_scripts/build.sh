@@ -75,9 +75,6 @@ git tag -a $TAG -m "$TAG"
 git push --tags
 export BUILD_TAG=${TAG}
 
-echo "== Going back to branch $SOURCE_BRANCH =="
-git checkout $SOURCE_BRANCH
-
 #echo "== Merging to target build branch $TARGET_BUILD_BRANCH =="
 #git push --force origin $TMP_RELEASE_BRANCH:$TARGET_BUILD_BRANCH
 
