@@ -8,12 +8,11 @@ OWNER='lossingalex'
 REPO='react-test'
 SOURCE_BRANCH='develop'
 TARGET_BUILD_BRANCH='uat'
-BUILD_ID=${TRAVIS_BUILD_ID}
+BUILD_ID=${TRAVIS_BUILD_NUMBER}
 
 #TODO check if can work withuot modifying existing global credentials
 echo "== Setting GIT credentials and checking branches =="
 git config credential.helper "store --file=.git/credentials"
-echo "https://${GH_TOKEN}:@github.com"
 echo "https://${GH_TOKEN}:@github.com" > .git/credentials
 git config --global user.email "builds@travis-ci.com"
 git config --global user.name "Travis CI"
@@ -46,8 +45,8 @@ git add CHANGELOG.md
 git commit -m "[skip ci] Bump version $TAG + Update Changelog"
 git push origin $SOURCE_BRANCH
 
-echo "== Switching to temporary release branch release-$TAG-$BUILD_ID =="
-TMP_RELEASE_BRANCH="release-$TAG-$BUILD_ID"
+echo "== Switching to temporary release branch release-$TAG-Travis-$BUILD_ID =="
+TMP_RELEASE_BRANCH="release-$TAG-Travis-$BUILD_ID"
 git checkout -b "$TMP_RELEASE_BRANCH"
 
 echo "== Generating npm-shrinkwrap =="
@@ -55,7 +54,7 @@ npm shrinkwrap
 
 echo "== Commiting shrinkwrap and build to temporary release branch =="
 git add npm-shrinkwrap.json
-git add build
+git add -f build
 git commit -m "Updating npm-shrinkwrap.json and release files"
 
 echo "== Merging to target build branch $TARGET_BUILD_BRANCH =="
