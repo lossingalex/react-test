@@ -2,12 +2,14 @@
 
 set -e # Exit with nonzero exit code if anything fails
 
-#TODO use TARGET_BRANCH and injected variable
+#TODO read owner and repo from TRAVIS_REPO_SLUG
+OWNER='lossingalex'
+REPO='react-test'
 SOURCE_BRANCH='develop'
 TARGET_BUILD_BRANCH='uat'
-#TODO remove temporary test token
+BUILD_ID=$TRAVIS_BUILD_ID
 
-
+#TODO check if can work withuot modifying existing global credentials
 echo "== Setting GIT credentials and checking branches =="
 git config credential.helper "store --file=.git/credentials"
 echo "https://${GH_TOKEN}:@github.com"
@@ -31,26 +33,39 @@ git checkout $SOURCE_BRANCH
 # == Method 2. Always increment patch version in package.json, read the new package.json version as new tag
 # - Drawback: Will always skip the tag X.X.0 and start with X.X.1
 # - Advantage: Easier to maintain, no error possible due to regex. Rely solely on package.json current version
+echo "== Bumping package.json =="
 TAG=$(npm --no-git-tag-version version patch)
+echo "New tag: $TAG"
 
-echo "== Bumping package.json to $TAG =="
+echo "== Generating Changelog =="
+npm shrinkwrap
+github-changes -o $OWNER -r $REPO -a --token ${GH_TOKEN} --branch $SOURCE_BRANCH
+
+
+echo "== Updating $SOURCE_BRANCH branch with package.json and CHANGELOG.md =="
 git add package.json
-git commit -m "[skip ci] Bump version $TAG"
+git add CHANGELOG.md
+git commit -m "[skip ci] Bump version $TAG + Update Changelog"
 git push origin $SOURCE_BRANCH
 
 echo "== Creating new tag release $TAG =="
 git tag -a $TAG -m "$TAG"
 git push --tags
 
-echo "== switching to temporary release branch release-$TAG-$TRAVIS_BUILD_ID =="
-RELEASE_BRANCH="release-$TAG-$TRAVIS_BUILD_ID"
-git checkout -b "$RELEASE_BRANCH"
+echo "== Switching to temporary release branch release-$TAG-$BUILD_ID =="
+TMP_RELEASE_BRANCH="release-$TAG-$BUILD_ID"
+git checkout -b "$TMP_RELEASE_BRANCH"
 
-echo "== generating npm-shrinkwrap and Changelog=="
+echo "== Generating npm-shrinkwrap =="
 npm shrinkwrap
 
 
+echo "== Commiting shrinkwrap and build to temporary release branch =="
+git add npm-shrinkwrap.json
+git add build
+git commit -m "Updating npm-shrinkwrap.json and release files"
+
 echo "== Merging to target build branch $TARGET_BUILD_BRANCH =="
 git checkout "$TARGET_BUILD_BRANCH"
-git merge $RELEASE_BRANCH
+git merge $TMP_RELEASE_BRANCH
 git push origin $TARGET_BUILD_BRANCH
