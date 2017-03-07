@@ -10,6 +10,9 @@ SOURCE_BRANCH='develop'
 TARGET_BUILD_BRANCH='uat'
 BUILD_ID=${TRAVIS_BUILD_NUMBER}
 
+
+git checkout $SOURCE_BRANCH
+
 #TODO check if can work withuot modifying existing global credentials
 echo "== Setting GIT credentials and checking branches =="
 git config credential.helper "store --file=.git/credentials"
@@ -17,12 +20,14 @@ echo "https://${GH_TOKEN}:@github.com" > .git/credentials
 git config --global user.email "builds@travis-ci.com"
 git config --global user.name "Travis CI"
 
-git fetch uat
+git fetch origin --all
+git branch
 git remote -v
 git branch -avv
 git checkout -b $TARGET_BUILD_BRANCH --track origin/$TARGET_BUILD_BRANCH
 
 git checkout $SOURCE_BRANCH
+
 
 # == Bumping Method 1. If package.json major and minor versions match last tag, then increment last tag. Else use package.json major.minor.0.
 # -  Reference: http://phdesign.com.au/programming/auto-increment-project-version-from-travis/ 
