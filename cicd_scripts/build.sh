@@ -20,6 +20,7 @@ git config --global user.name "Travis CI"
 
 echo "== Fetching and checking out $TARGET_BUILD_BRANCH branch =="
 # Stash any modification due to .travis.yml script (chmod)
+git status
 git stash
 git remote set-branches --add origin $TARGET_BUILD_BRANCH
 git fetch
