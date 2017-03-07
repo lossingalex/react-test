@@ -18,11 +18,15 @@ echo "https://${GH_TOKEN}:@github.com" > .git/credentials
 git config --global user.email "builds@travis-ci.com"
 git config --global user.name "Travis CI"
 
+echo "== Fetching and checking out $TARGET_BUILD_BRANCH branch =="
+# Stash any modification due to .travis.yml script (chmod)
+git stash
 git remote set-branches --add origin $TARGET_BUILD_BRANCH
 git fetch
 git branch -avv
 git checkout -b $TARGET_BUILD_BRANCH origin/$TARGET_BUILD_BRANCH
 
+echo "== Checking out $SOURCE_BRANCH branch =="
 git checkout $SOURCE_BRANCH
 
 
