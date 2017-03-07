@@ -19,6 +19,11 @@ branches:
   except:
     - /^v?\d+\.\d+\.\d+$/
 
+
+branches:
+  only:
+    - develop
+
 before_deploy:
   - chmod u+x ./cicd_scripts/build.sh
   # TODO launch unit test
