@@ -57,7 +57,7 @@ git add -f build
 git commit -m "Updating npm-shrinkwrap.json and release files"
 
 echo "== Merging to target build branch $TARGET_BUILD_BRANCH =="
-git checkout "$TARGET_BUILD_BRANCH"
+git checkout -b $TARGET_BUILD_BRANCH --track origin/$TARGET_BUILD_BRANCH
 git merge $TMP_RELEASE_BRANCH
 git push origin $TARGET_BUILD_BRANCH
 
