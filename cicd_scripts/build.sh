@@ -69,9 +69,10 @@ git add npm-shrinkwrap.json
 git commit -m "Updating npm-shrinkwrap.json and release files"
 
 echo "== Merging to target build branch $TARGET_BUILD_BRANCH =="
-git checkout $TARGET_BUILD_BRANCH
-git merge $TMP_RELEASE_BRANCH
-git push origin $TARGET_BUILD_BRANCH
+#git checkout $TARGET_BUILD_BRANCH
+#git merge $TMP_RELEASE_BRANCH
+#git push origin $TARGET_BUILD_BRANCH
+git push --force origine $TMP_RELEASE_BRANCH:$TARGET_BUILD_BRANCH
 
 echo "== Creating new tag release $TAG =="
 git tag -a $TAG -m "$TAG"
