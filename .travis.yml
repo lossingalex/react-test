@@ -31,7 +31,9 @@ before_deploy:
 deploy:
   # Build "images" on develop merge
   - provider: script
-    script: ./cicd_scripts/build.sh
+    script:
+      - ./cicd_scripts/build.sh
+      - npm run test
     skip_cleanup: true
     on:
       branch: develop
