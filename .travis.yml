@@ -25,15 +25,15 @@ branches:
     - develop
 
 
-script:
-      - ./cicd_scripts/deploy.sh
-      - ./cicd_scripts/deploy.sh
-      - ./cicd_scripts/deploy.sh
-
-before_deploy:
+before_script:
   - chmod u+x ./cicd_scripts/build.sh
   - chmod u+x ./cicd_scripts/deploy.sh
   # TODO launch unit test
+
+script:
+    - ./cicd_scripts/deploy.sh
+    - ./cicd_scripts/deploy.sh
+    - ./cicd_scripts/deploy.sh
 
 deploy:
   # Build "images" on develop merge
