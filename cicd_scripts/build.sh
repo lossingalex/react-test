@@ -22,7 +22,7 @@ git fetch origin $SOURCE_BRANCH
 git fetch origin $TARGET_BUILD_BRANCH
 git checkout $SOURCE_BRANCH
 
-# == Method 1. If package.json major and minor versions match last tag, then increment last tag. Else use package.json major.minor.0.
+# == Bumping Method 1. If package.json major and minor versions match last tag, then increment last tag. Else use package.json major.minor.0.
 # -  Reference: http://phdesign.com.au/programming/auto-increment-project-version-from-travis/ 
 # - Drawback: Rely on last existing tag. Need to make sure last tag exists and follow current regex format (vX.X.X).
 # - Advantage: Allow to have X.X.0 as a first tag in case of major or minor increment
@@ -30,7 +30,7 @@ git checkout $SOURCE_BRANCH
 #echo $TAG
 #npm --no-git-tag-version version from-git
 
-# == Method 2. Always increment patch version in package.json, read the new package.json version as new tag
+# == Bumping Method 2. Always increment patch version in package.json, read the new package.json version as new tag
 # - Drawback: Will always skip the tag X.X.0 and start with X.X.1
 # - Advantage: Easier to maintain, no error possible due to regex. Rely solely on package.json current version
 echo "== Bumping package.json =="
@@ -38,9 +38,7 @@ TAG=$(npm --no-git-tag-version version patch)
 echo "New tag: $TAG"
 
 echo "== Generating Changelog =="
-npm shrinkwrap
 github-changes -o $OWNER -r $REPO -a --token ${GH_TOKEN} --branch $SOURCE_BRANCH
-
 
 echo "== Updating $SOURCE_BRANCH branch with package.json and CHANGELOG.md =="
 git add package.json
@@ -48,19 +46,12 @@ git add CHANGELOG.md
 git commit -m "[skip ci] Bump version $TAG + Update Changelog"
 git push origin $SOURCE_BRANCH
 
-
-echo "== Creating new tag release $TAG =="
-git tag -a $TAG -m "$TAG"
-git push --tags
-
 echo "== Switching to temporary release branch release-$TAG-$BUILD_ID =="
 TMP_RELEASE_BRANCH="release-$TAG-$BUILD_ID"
 git checkout -b "$TMP_RELEASE_BRANCH"
 
 echo "== Generating npm-shrinkwrap =="
 npm shrinkwrap
-
-github-changes -o lossingalex -r react-test -a --token ${GH_TOKEN} --branch $SOURCE_BRANCH
 
 echo "== Commiting shrinkwrap and build to temporary release branch =="
 git add npm-shrinkwrap.json
@@ -71,3 +62,7 @@ echo "== Merging to target build branch $TARGET_BUILD_BRANCH =="
 git checkout "$TARGET_BUILD_BRANCH"
 git merge $TMP_RELEASE_BRANCH
 git push origin $TARGET_BUILD_BRANCH
+
+echo "== Creating new tag release $TAG =="
+git tag -a $TAG -m "$TAG"
+git push --tags
