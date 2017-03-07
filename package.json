@@ -1,6 +1,6 @@
 {
   "name": "pricing-react-test",
-  "version": "0.1.28",
+  "version": "0.1.29",
   "private": true,
   "dependencies": {
     "react": "^15.4.2",
