@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e # Exit with nonzero exit code if anything fails
+echo "== STARTING BUILD =="
 
 #TODO read owner and repo from TRAVIS_REPO_SLUG
 OWNER='lossingalex'

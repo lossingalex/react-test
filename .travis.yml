@@ -1,13 +1,15 @@
 language: node_js
 node_js:
 - '7'
+
+#TODO caching of node_modules
+before_install:
+  - npm install
+  - npm install -g github-changes
 install:
   # Install any dependencies required for building your site here.
   # `awscli` is required for invalidation of CloudFront distributions and sync file to s# bucket
   - pip install --user awscli
-before_install:
-  - npm install
-  - npm install -g github-changes
 install:
   - npm run build
 
@@ -23,7 +25,7 @@ branches:
 deploy:
   # Build "images" on develop merge
   - provider: script
-    script: cicd_scripts/build.sh
+    script: ./cicd_scripts/build.sh
     skip_cleanup: true
     on:
       branch: develop
