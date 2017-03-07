@@ -1,6 +1,16 @@
 ## Change Log
 
-### upcoming (2017/03/07 06:36 +00:00)
+### upcoming (2017/03/07 07:26 +00:00)
+- [6efc423](https://github.com/lossingalex/react-test/commit/6efc423170c4c04dd6383b7a76cf7ca295367053) fix fetch remote branch
+- [2adf6b5](https://github.com/lossingalex/react-test/commit/2adf6b5ecfd89f1aece5e5aa49f2796ff64a70df) fix fetch remote branch
+- [a5aa7be](https://github.com/lossingalex/react-test/commit/a5aa7be7bbcda4c6aa7c9c23bf19459fc7995810) fetch
+- [f577330](https://github.com/lossingalex/react-test/commit/f577330368be7faf773fae713592941f6a221f17) fetch uat
+- [a7fb5bd](https://github.com/lossingalex/react-test/commit/a7fb5bd067f67a74a6e90b5878f68e545fa52478) fetch uat
+- [167a7b7](https://github.com/lossingalex/react-test/commit/167a7b75756e5ee8e7529675a95fb963aac791fa) fetch uat
+- [bc6656a](https://github.com/lossingalex/react-test/commit/bc6656aa0c512907a8370475fcbdc54f6e14b772) fetch --all
+- [068c805](https://github.com/lossingalex/react-test/commit/068c8057f7b715ed949a9f20b42ccfce4e8c3c12) Merge branch 'develop' of github.com:lossingalex/react-test into develop
+- [4bdb792](https://github.com/lossingalex/react-test/commit/4bdb7929db2bbecfb29243d5cb66f2a7f0c25305) fix checkout remote branch
+- [6168304](https://github.com/lossingalex/react-test/commit/6168304dc516dfea3594dd45a700c39bdfa33d86) [skip ci] Bump version v0.1.26 + Update Changelog
 - [f68225f](https://github.com/lossingalex/react-test/commit/f68225f3e296bd3ae8160961c1eacdcae17b9b52) fix checkout remote brnahc
 - [9524043](https://github.com/lossingalex/react-test/commit/9524043be269ac2f65d85f479ea74b8b0abadaf3) [skip ci] Bump version v0.1.25 + Update Changelog
 - [e5a59c0](https://github.com/lossingalex/react-test/commit/e5a59c0c9f5118f7dc77628664310c69c4140b22) Merge branch 'develop' of github.com:lossingalex/react-test into develop
