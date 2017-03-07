@@ -22,13 +22,13 @@ git config --global user.name "Travis CI"
 
 echo "== Fetching and checking out $TARGET_BUILD_BRANCH branch =="
 # Stash any modification due to .travis.yml script (chmod)
-ls
-git status
-git stash
-git remote set-branches --add origin $TARGET_BUILD_BRANCH
-git fetch
-git branch -avv
-git checkout -b $TARGET_BUILD_BRANCH origin/$TARGET_BUILD_BRANCH
+#ls
+#git status
+#git stash
+#git remote set-branches --add origin $TARGET_BUILD_BRANCH
+#git fetch
+#git branch -avv
+#git checkout -b $TARGET_BUILD_BRANCH origin/$TARGET_BUILD_BRANCH
 
 echo "== Checking out $SOURCE_BRANCH branch =="
 git checkout $SOURCE_BRANCH
@@ -73,6 +73,10 @@ git commit -m "Add npm-shrinkwrap.json"
 echo "== Creating new tag release $TAG =="
 git tag -a $TAG -m "$TAG"
 git push --tags
+export BUILD_TAG=${TAG}
+
+echo "== Going back to branch $SOURCE_BRANCH =="
+git checkout $SOURCE_BRANCH
 
 #echo "== Merging to target build branch $TARGET_BUILD_BRANCH =="
 #git push --force origin $TMP_RELEASE_BRANCH:$TARGET_BUILD_BRANCH
