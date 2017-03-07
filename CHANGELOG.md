@@ -1,6 +1,9 @@
 ## Change Log
 
-### upcoming (2017/03/07 06:11 +00:00)
+### upcoming (2017/03/07 06:19 +00:00)
+- [03ed73e](https://github.com/lossingalex/react-test/commit/03ed73ec2bc59e89d06283e6f6b49d5d5dc21571) Merge branch 'develop' of github.com:lossingalex/react-test into develop
+- [d784029](https://github.com/lossingalex/react-test/commit/d784029811398f0b5ff054835b2dd48ddd8dae2f) force bild folder commit
+- [3424770](https://github.com/lossingalex/react-test/commit/342477052cf3e798ef7980255a41377d1f382191) [skip ci] Bump version v0.1.23 + Update Changelog
 - [cda7ea1](https://github.com/lossingalex/react-test/commit/cda7ea1d0a84c4458e66703ffed7208eda1bb55f) uncomment build script
 - [713e226](https://github.com/lossingalex/react-test/commit/713e2261da377a1d3e87bb5322238c997fc004bf) fix travis
 - [bb56acb](https://github.com/lossingalex/react-test/commit/bb56acb912a6b6beddc590ff98df5e58bca89dbe) test travis
