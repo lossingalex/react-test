@@ -18,6 +18,10 @@ git config --global user.email "builds@travis-ci.com"
 git config --global user.name "Travis CI"
 
 git fetch
+git remote -v
+git branch -avv
+git checkout -b $TARGET_BUILD_BRANCH --track origin/$TARGET_BUILD_BRANCH
+
 git checkout $SOURCE_BRANCH
 
 # == Bumping Method 1. If package.json major and minor versions match last tag, then increment last tag. Else use package.json major.minor.0.
@@ -57,7 +61,7 @@ git add -f build
 git commit -m "Updating npm-shrinkwrap.json and release files"
 
 echo "== Merging to target build branch $TARGET_BUILD_BRANCH =="
-git checkout -b $TARGET_BUILD_BRANCH --track origin/$TARGET_BUILD_BRANCH
+git checkout $TARGET_BUILD_BRANCH
 git merge $TMP_RELEASE_BRANCH
 git push origin $TARGET_BUILD_BRANCH
 
