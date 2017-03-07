@@ -20,6 +20,7 @@ git config --global user.name "Travis CI"
 
 echo "== Fetching and checking out $TARGET_BUILD_BRANCH branch =="
 # Stash any modification due to .travis.yml script (chmod)
+ls
 git status
 git stash
 git remote set-branches --add origin $TARGET_BUILD_BRANCH
@@ -64,7 +65,7 @@ npm shrinkwrap
 
 echo "== Commiting shrinkwrap and build to temporary release branch =="
 git add npm-shrinkwrap.json
-git add -f build
+#git add -f build
 git commit -m "Updating npm-shrinkwrap.json and release files"
 
 echo "== Merging to target build branch $TARGET_BUILD_BRANCH =="
