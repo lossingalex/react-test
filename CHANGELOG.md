@@ -1,6 +1,8 @@
 ## Change Log
 
-### upcoming (2017/03/07 06:31 +00:00)
+### upcoming (2017/03/07 06:36 +00:00)
+- [f68225f](https://github.com/lossingalex/react-test/commit/f68225f3e296bd3ae8160961c1eacdcae17b9b52) fix checkout remote brnahc
+- [9524043](https://github.com/lossingalex/react-test/commit/9524043be269ac2f65d85f479ea74b8b0abadaf3) [skip ci] Bump version v0.1.25 + Update Changelog
 - [e5a59c0](https://github.com/lossingalex/react-test/commit/e5a59c0c9f5118f7dc77628664310c69c4140b22) Merge branch 'develop' of github.com:lossingalex/react-test into develop
 - [da5cc59](https://github.com/lossingalex/react-test/commit/da5cc59bd1323e7d55ff8bed816c7c82eaf15254) test fix travis
 - [81487af](https://github.com/lossingalex/react-test/commit/81487aff6ca4f2b500991bf8c8e4ae62169171be) [skip ci] Bump version v0.1.24 + Update Changelog
