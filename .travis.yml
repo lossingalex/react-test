@@ -10,7 +10,6 @@ install:
   # Install any dependencies required for building your site here.
   # `awscli` is required for invalidation of CloudFront distributions and sync file to s# bucket
   - pip install --user awscli
-install:
   - npm run build
 
 
@@ -18,7 +17,7 @@ install:
 branches:
   except:
     - /^v?\d+\.\d+\.\d+$/
-
+    - master
 
 branches:
   only:
@@ -26,20 +25,21 @@ branches:
 
 
 before_script:
+  - chmod u+x ./cicd_scripts/cicd.sh
   - chmod u+x ./cicd_scripts/build.sh
   - chmod u+x ./cicd_scripts/deploy.sh
   # TODO launch unit test
 
-script:
-    - ./cicd_scripts/deploy.sh
-    - ./cicd_scripts/deploy.sh
-    - ./cicd_scripts/deploy.sh
+#script:
+#    - ./cicd_scripts/deploy.sh
+#    - ./cicd_scripts/deploy.sh
+#    - ./cicd_scripts/deploy.sh
 
 deploy:
   # Build "images" on develop merge
   - provider: script
     script:
-      - ./cicd_scripts/build.sh
+      - ./cicd_scripts/cicd.sh
     skip_cleanup: true
     on:
       branch: develop
