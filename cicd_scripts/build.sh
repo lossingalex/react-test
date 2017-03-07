@@ -20,11 +20,14 @@ echo "https://${GH_TOKEN}:@github.com" > .git/credentials
 git config --global user.email "builds@travis-ci.com"
 git config --global user.name "Travis CI"
 
+git remote show origin
+git remote update
+git fetch
 git fetch --all
 git branch
 git remote -v
 git branch -avv
-git checkout -b $TARGET_BUILD_BRANCH --track origin/$TARGET_BUILD_BRANCH
+git checkout -b $TARGET_BUILD_BRANCH origin/$TARGET_BUILD_BRANCH
 
 git checkout $SOURCE_BRANCH
 
