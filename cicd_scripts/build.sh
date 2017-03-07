@@ -48,6 +48,7 @@ git add CHANGELOG.md
 git commit -m "[skip ci] Bump version $TAG + Update Changelog"
 git push origin $SOURCE_BRANCH
 
+
 echo "== Creating new tag release $TAG =="
 git tag -a $TAG -m "$TAG"
 git push --tags
@@ -59,6 +60,7 @@ git checkout -b "$TMP_RELEASE_BRANCH"
 echo "== Generating npm-shrinkwrap =="
 npm shrinkwrap
 
+github-changes -o lossingalex -r react-test -a --token ${GH_TOKEN} --branch $SOURCE_BRANCH
 
 echo "== Commiting shrinkwrap and build to temporary release branch =="
 git add npm-shrinkwrap.json
