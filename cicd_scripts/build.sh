@@ -1,7 +1,9 @@
 #!/bin/bash
 
 set -e # Exit with nonzero exit code if anything fails
-echo "== STARTING BUILD =="
+echo "=================================================="
+echo "=============     STARTING BUILD     ============="
+echo "=================================================="
 
 #TODO read owner and repo from TRAVIS_REPO_SLUG
 OWNER='lossingalex'
@@ -63,10 +65,10 @@ git checkout -b "$TMP_RELEASE_BRANCH"
 echo "== Generating npm-shrinkwrap =="
 npm shrinkwrap
 
-echo "== Commiting shrinkwrap and build to temporary release branch =="
+echo "== Commiting shrinkwrap =="
 git add npm-shrinkwrap.json
 #git add -f build
-git commit -m "Updating npm-shrinkwrap.json and release files"
+git commit -m "Add npm-shrinkwrap.json"
 
 echo "== Creating new tag release $TAG =="
 git tag -a $TAG -m "$TAG"

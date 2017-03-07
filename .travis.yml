@@ -26,6 +26,7 @@ branches:
 
 before_deploy:
   - chmod u+x ./cicd_scripts/build.sh
+  - chmod u+x ./cicd_scripts/deploy.sh
   # TODO launch unit test
 
 deploy:
@@ -33,7 +34,7 @@ deploy:
   - provider: script
     script:
       - ./cicd_scripts/build.sh
-      - npm run test
+      - ./cicd_scripts/deploy.sh
     skip_cleanup: true
     on:
       branch: develop
