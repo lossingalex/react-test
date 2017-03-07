@@ -17,8 +17,7 @@ echo "https://${GH_TOKEN}:@github.com" > .git/credentials
 git config --global user.email "builds@travis-ci.com"
 git config --global user.name "Travis CI"
 
-git fetch origin $SOURCE_BRANCH
-git fetch origin $TARGET_BUILD_BRANCH
+git fetch
 git checkout $SOURCE_BRANCH
 
 # == Bumping Method 1. If package.json major and minor versions match last tag, then increment last tag. Else use package.json major.minor.0.
@@ -37,7 +36,7 @@ TAG=$(npm --no-git-tag-version version patch)
 echo "New tag: $TAG"
 
 echo "== Generating Changelog =="
-github-changes -o $OWNER -r $REPO -a --token ${GH_TOKEN} --branch $SOURCE_BRANCH
+github-changes -o $OWNER -r $REPO -a --token ${GH_TOKEN} --branch $SOURCE_BRANCH --verbose --use-commit-body
 
 echo "== Updating $SOURCE_BRANCH branch with package.json and CHANGELOG.md =="
 git add package.json
