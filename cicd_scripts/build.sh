@@ -20,7 +20,7 @@ echo "https://${GH_TOKEN}:@github.com" > .git/credentials
 git config --global user.email "builds@travis-ci.com"
 git config --global user.name "Travis CI"
 
-git fetch origin --all
+git fetch --all
 git branch
 git remote -v
 git branch -avv
