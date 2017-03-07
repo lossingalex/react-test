@@ -24,6 +24,12 @@ branches:
   only:
     - develop
 
+
+script:
+      - ./cicd_scripts/deploy.sh
+      - ./cicd_scripts/deploy.sh
+      - ./cicd_scripts/deploy.sh
+
 before_deploy:
   - chmod u+x ./cicd_scripts/build.sh
   - chmod u+x ./cicd_scripts/deploy.sh
@@ -34,7 +40,6 @@ deploy:
   - provider: script
     script:
       - ./cicd_scripts/build.sh
-      - ./cicd_scripts/deploy.sh
     skip_cleanup: true
     on:
       branch: develop
