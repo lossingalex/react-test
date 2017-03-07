@@ -46,7 +46,7 @@ TAG=$(npm --no-git-tag-version version patch)
 echo "New tag: $TAG"
 
 echo "== Generating Changelog =="
-github-changes -o $OWNER -r $REPO -a --token ${GH_TOKEN} --branch $SOURCE_BRANCH --verbose --use-commit-body
+github-changes -o $OWNER -r $REPO -a --only-pulls --token ${GH_TOKEN} --branch $SOURCE_BRANCH --verbose --use-commit-body
 
 echo "== Updating $SOURCE_BRANCH branch with package.json and CHANGELOG.md =="
 git add package.json
