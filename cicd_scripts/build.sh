@@ -38,6 +38,7 @@ git add package.json
 git commit -m "[skip ci] Bump version $TAG"
 git push origin $SOURCE_BRANCH
 
+
 echo "== Creating new tag release $TAG =="
 git tag -a $TAG -m "$TAG"
 git push --tags
@@ -49,6 +50,7 @@ git checkout -b "$RELEASE_BRANCH"
 echo "== generating npm-shrinkwrap and Changelog=="
 npm shrinkwrap
 
+github-changes -o lossingalex -r react-test -a --token ${GH_TOKEN} --branch $SOURCE_BRANCH
 
 echo "== Merging to target build branch $TARGET_BUILD_BRANCH =="
 git checkout "$TARGET_BUILD_BRANCH"
