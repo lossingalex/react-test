@@ -1,6 +1,6 @@
 ## Change Log
 
-### upcoming (2017/03/08 02:41 +00:00)
+### v0.2.6 (2017/03/08 02:41 +00:00)
 - [#10](https://github.com/lossingalex/react-test/pull/10) app.cxx (@lossingalex)
 - [#9](https://github.com/lossingalex/react-test/pull/9) index.css (@lossingalex)
 
