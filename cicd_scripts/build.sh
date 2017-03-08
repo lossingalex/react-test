@@ -17,14 +17,14 @@ echo "=================================================="
 echo "=============     STARTING BUILD     ============="
 echo "=================================================="
 
-/bin/bash --version
-
-
+echo "== Init variable =="
 echo "Repo slug: ${TRAVIS_REPO_SLUG}"
 IFS='/' read -ra REPO_SLUG_ARRAY <<< "${TRAVIS_REPO_SLUG}"
+
 echo "Repo slug split: ${REPO_SLUG_ARRAY[*]}"
 OWNER=${REPO_SLUG_ARRAY[0]}
 REPO=${REPO_SLUG_ARRAY[1]}
+
 SOURCE_BRANCH='develop'
 BUILD_ID=${TRAVIS_BUILD_NUMBER}
 
