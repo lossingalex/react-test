@@ -30,8 +30,14 @@ echo "== Fetching and checking out $TARGET_BUILD_BRANCH branch =="
 #git branch -avv
 #git checkout -b $TARGET_BUILD_BRANCH origin/$TARGET_BUILD_BRANCH
 
-echo "== Checking out $SOURCE_BRANCH branch =="
-git checkout $SOURCE_BRANCH
+
+
+echo "== Switching to temporary release branch release-$TAG-Travis-$BUILD_ID =="
+TMP_RELEASE_BRANCH="release-$TAG-Travis-$BUILD_ID"
+git checkout -b "$TMP_RELEASE_BRANCH"
+
+#echo "== Checking out $SOURCE_BRANCH branch =="
+#git checkout $SOURCE_BRANCH
 
 
 # == Bumping Method 1. If package.json major and minor versions match last tag, then increment last tag. Else use package.json major.minor.0.
@@ -56,11 +62,20 @@ echo "== Updating $SOURCE_BRANCH branch with package.json and CHANGELOG.md =="
 git add package.json
 git add CHANGELOG.md
 git commit -m "[skip ci] Bump version $TAG + Update Changelog"
-git push origin $SOURCE_BRANCH
+#git push origin $SOURCE_BRANCH
+#
 
-echo "== Switching to temporary release branch release-$TAG-Travis-$BUILD_ID =="
-TMP_RELEASE_BRANCH="release-$TAG-Travis-$BUILD_ID"
-git checkout -b "$TMP_RELEASE_BRANCH"
+
+echo "== Apply change to package.json and CHANGELOG to $SOURCE_BRANCH using rebase =="
+git checkout $SOURCE_BRANCH
+git pull origin $SOURCE_BRANCH
+git rebase $TMP_RELEASE_BRANCH
+# If success, comes back to release branch for creating final tag
+git checkout $TMP_RELEASE_BRANCH
+
+#echo "== Switching to temporary release branch release-$TAG-Travis-$BUILD_ID =="
+#TMP_RELEASE_BRANCH="release-$TAG-Travis-$BUILD_ID"
+#git checkout -b "$TMP_RELEASE_BRANCH"
 
 echo "== Generating npm-shrinkwrap =="
 npm shrinkwrap
