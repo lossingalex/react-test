@@ -70,6 +70,7 @@ echo "== Apply change to package.json and CHANGELOG to $SOURCE_BRANCH using reba
 git checkout $SOURCE_BRANCH
 git pull origin $SOURCE_BRANCH
 git rebase $TMP_RELEASE_BRANCH
+git push origin $SOURCE_BRANCH
 # If success, comes back to release branch for creating final tag
 git checkout $TMP_RELEASE_BRANCH
 
