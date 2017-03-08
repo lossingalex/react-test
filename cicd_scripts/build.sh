@@ -5,9 +5,12 @@ echo "=================================================="
 echo "=============     STARTING BUILD     ============="
 echo "=================================================="
 
-#TODO read owner and repo from TRAVIS_REPO_SLUG
-OWNER='lossingalex'
-REPO='react-test'
+
+echo "Repo slug: ${TRAVIS_REPO_SLUG}"
+IFS='/' read -ra REPO_SLUG_ARRAY <<< "${TRAVIS_REPO_SLUG}"
+echo "Repo slug split: ${REPO_SLUG_ARRAY[*]}"
+OWNER=${REPO_SLUG_ARRAY[0]}
+REPO=${REPO_SLUG_ARRAY[1]}
 SOURCE_BRANCH='develop'
 TARGET_BUILD_BRANCH='uat'
 BUILD_ID=${TRAVIS_BUILD_NUMBER}

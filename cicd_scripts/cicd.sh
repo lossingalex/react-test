@@ -11,5 +11,5 @@ BUILD_TAG=${BUILD_TAG}
 echo "New tag $BUILD_TAG..."
 
 # deploy a tag
-sh ./cicd_scripts/deploy.sh uat $BUILD_TAG
+sh ./cicd_scripts/deploy.sh
 
