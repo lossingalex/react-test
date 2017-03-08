@@ -5,7 +5,10 @@
 # - In the 'develop' branch will also commit tha change in package.json and CHANGELOG.md.
 #   In case a modification has been done in develop before the commit is pushed the commit will fail.
 #
-# Below Travis Environment variable are expecting to be set :
+# github-changes command is expected to be install as a global: npm install -g github-changes
+# (https://github.com/lalitkapoor/github-changes)
+#
+# Below Environment variable are expecting to be set :
 # GH_TOKEN: Github personnal token with right to pull, push in the repo
 
 
@@ -13,6 +16,9 @@ set -e # Exit with nonzero exit code if anything fails
 echo "=================================================="
 echo "=============     STARTING BUILD     ============="
 echo "=================================================="
+
+/bin/bash --version
+
 
 echo "Repo slug: ${TRAVIS_REPO_SLUG}"
 IFS='/' read -ra REPO_SLUG_ARRAY <<< "${TRAVIS_REPO_SLUG}"
