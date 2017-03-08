@@ -1,5 +1,9 @@
 ## Change Log
 
+### upcoming (2017/03/08 01:24 +00:00)
+- [#5](https://github.com/lossingalex/react-test/pull/5) test pr (@lossingalex)
+- [#4](https://github.com/lossingalex/react-test/pull/4) remove test.html (@lossingalex)
+
 ### v0.1.42 (2017/03/08 01:06 +00:00)
 - [#3](https://github.com/lossingalex/react-test/pull/3) test pr (@lossingalex)
 
