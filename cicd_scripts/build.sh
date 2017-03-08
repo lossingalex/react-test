@@ -65,18 +65,32 @@ git commit -m "[skip ci] Bump version $TAG + Update Changelog"
 #git push origin $SOURCE_BRANCH
 #
 
+#echo "== Apply change to package.json and CHANGELOG to $SOURCE_BRANCH using rebase =="
+#git checkout $SOURCE_BRANCH
+#git status
+#git log -n 5
+#git pull origin $SOURCE_BRANCH
+#git rebase $TMP_RELEASE_BRANCH
+#echo "== REBASE Done, try to push =="
+#git status
+#git log -n 5
+#git push origin $SOURCE_BRANCH
+## If success, comes back to release branch for creating final tag
+#git checkout $TMP_RELEASE_BRANCH
+
+
+
 echo "== Apply change to package.json and CHANGELOG to $SOURCE_BRANCH using rebase =="
 git checkout $SOURCE_BRANCH
-git status
-git log -n 5
-git rebase $TMP_RELEASE_BRANCH
 git pull origin $SOURCE_BRANCH
-echo "== AFTER REBASE =="
+git merge $TMP_RELEASE_BRANCH -m "[skip CI] Merging package.json and CHANGELOG"
+echo "== REBASE Done, try to push =="
 git status
 git log -n 5
 git push origin $SOURCE_BRANCH
 # If success, comes back to release branch for creating final tag
 git checkout $TMP_RELEASE_BRANCH
+
 
 #echo "== Switching to temporary release branch release-$TAG-Travis-$BUILD_ID =="
 #TMP_RELEASE_BRANCH="release-$TAG-Travis-$BUILD_ID"
