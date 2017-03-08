@@ -5,7 +5,6 @@ echo "=================================================="
 echo "=============     STARTING CI/CD     ============="
 echo "=================================================="
 
-
 # Build a tag
 sh ./cicd_scripts/build.sh
 BUILD_TAG=${BUILD_TAG}
