@@ -24,10 +24,7 @@ branches:
     - develop
 
 
-before_script:
-  - chmod u+x ./cicd_scripts/cicd.sh
-  - chmod u+x ./cicd_scripts/build.sh
-  - chmod u+x ./cicd_scripts/deploy.sh
+#before_script:
   # TODO launch unit test
 
 #script:
