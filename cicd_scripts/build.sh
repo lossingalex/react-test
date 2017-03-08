@@ -65,7 +65,6 @@ git commit -m "[skip ci] Bump version $TAG + Update Changelog"
 #git push origin $SOURCE_BRANCH
 #
 
-
 echo "== Apply change to package.json and CHANGELOG to $SOURCE_BRANCH using rebase =="
 git checkout $SOURCE_BRANCH
 git pull origin $SOURCE_BRANCH
