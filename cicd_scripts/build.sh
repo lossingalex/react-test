@@ -20,17 +20,6 @@ echo "https://${GH_TOKEN}:@github.com" > .git/credentials
 git config --global user.email "builds@travis-ci.com"
 git config --global user.name "Travis CI"
 
-echo "== Fetching and checking out $TARGET_BUILD_BRANCH branch =="
-# Stash any modification due to .travis.yml script (chmod)
-#ls
-#git status
-#git stash
-#git remote set-branches --add origin $TARGET_BUILD_BRANCH
-#git fetch
-#git branch -avv
-#git checkout -b $TARGET_BUILD_BRANCH origin/$TARGET_BUILD_BRANCH
-
-
 
 echo "== Switching to temporary release branch release-$TAG-Travis-$BUILD_ID =="
 TMP_RELEASE_BRANCH="release-$TAG-Travis-$BUILD_ID"
@@ -49,7 +38,7 @@ git checkout -b "$TMP_RELEASE_BRANCH"
 #npm --no-git-tag-version version from-git
 
 # == Bumping Method 2. Always increment patch version in package.json, read the new package.json version as new tag
-# - Drawback: Will always skip the tag X.X.0 and start with X.X.1
+# - Drawback: Will always skip the tag X.X.0 and start with X.X.1. In case of multiple commit at the same time for Travis, package.json will have the same version
 # - Advantage: Easier to maintain, no error possible due to regex. Rely solely on package.json current version
 echo "== Bumping package.json =="
 TAG=$(npm --no-git-tag-version version patch)
@@ -62,39 +51,27 @@ echo "== Updating $SOURCE_BRANCH branch with package.json and CHANGELOG.md =="
 git add package.json
 git add CHANGELOG.md
 git commit -m "[skip ci] Bump version $TAG + Update Changelog"
-#git push origin $SOURCE_BRANCH
-#
 
-#echo "== Apply change to package.json and CHANGELOG to $SOURCE_BRANCH using rebase =="
-#git checkout $SOURCE_BRANCH
-#git status
-#git log -n 5
-#git pull origin $SOURCE_BRANCH
-#git rebase $TMP_RELEASE_BRANCH
-#echo "== REBASE Done, try to push =="
-#git status
-#git log -n 5
-#git push origin $SOURCE_BRANCH
-## If success, comes back to release branch for creating final tag
-#git checkout $TMP_RELEASE_BRANCH
-
-
-
+## Push to Develop Method 1. Using Rebase
+# In case of multiple commit before the push, rebase will fail because remote develop has been modified. Next travis job should handle the new tag
 echo "== Apply change to package.json and CHANGELOG to $SOURCE_BRANCH using rebase =="
 git checkout $SOURCE_BRANCH
 git pull origin $SOURCE_BRANCH
-git merge $TMP_RELEASE_BRANCH -m "[skip CI] Merging package.json and CHANGELOG"
+git rebase $TMP_RELEASE_BRANCH
 echo "== REBASE Done, try to push =="
-git status
-git log -n 5
 git push origin $SOURCE_BRANCH
-# If success, comes back to release branch for creating final tag
+
+
+## Push to Develop Method 2. Using Merge
+# In case of multiple commit before the push, TODO have to handle merge conflict with Changelog and package.json + need to use Bumping Method 1 to not rely on package.json to bump
+#echo "== Apply change to package.json and CHANGELOG to $SOURCE_BRANCH using merge =="
+#git checkout $SOURCE_BRANCH
+#git pull origin $SOURCE_BRANCH
+#git merge $TMP_RELEASE_BRANCH -m "[skip CI] Merging package.json and CHANGELOG"
+#git push origin $SOURCE_BRANCH
+
+#echo "== Switching back to temporary release branch release-$TAG-Travis-$BUILD_ID to create tag =="
 git checkout $TMP_RELEASE_BRANCH
-
-
-#echo "== Switching to temporary release branch release-$TAG-Travis-$BUILD_ID =="
-#TMP_RELEASE_BRANCH="release-$TAG-Travis-$BUILD_ID"
-#git checkout -b "$TMP_RELEASE_BRANCH"
 
 echo "== Generating npm-shrinkwrap =="
 npm shrinkwrap
