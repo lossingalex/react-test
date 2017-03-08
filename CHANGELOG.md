@@ -1,5 +1,10 @@
 ## Change Log
 
+### upcoming (2017/03/08 05:50 +00:00)
+- [#16](https://github.com/lossingalex/react-test/pull/16) pr14 index.css (@lossingalex)
+- [#15](https://github.com/lossingalex/react-test/pull/15) pr13 app.css (@lossingalex)
+- [#14](https://github.com/lossingalex/react-test/pull/14) pr12 index.html (@lossingalex)
+
 ### v0.2.10 (2017/03/08 03:54 +00:00)
 - [#13](https://github.com/lossingalex/react-test/pull/13) pr11 index.html (@lossingalex)
 - [#12](https://github.com/lossingalex/react-test/pull/12) pr10 index.css (@lossingalex)
