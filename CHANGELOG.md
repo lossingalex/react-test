@@ -1,6 +1,6 @@
 ## Change Log
 
-### upcoming (2017/03/08 07:05 +00:00)
+### v0.2.16 (2017/03/08 07:05 +00:00)
 - [#17](https://github.com/lossingalex/react-test/pull/17) Revert "pr14 index.css" (@lossingalex)
 - [#18](https://github.com/lossingalex/react-test/pull/18) Revert "pr13 app.css" (@lossingalex)
 - [#19](https://github.com/lossingalex/react-test/pull/19) Revert "pr12 index.html" (@lossingalex)
