@@ -1,10 +1,18 @@
 #!/bin/bash
 
+# Build a Githug from current commit:
+# - In the tag will bump patch version (X.X.patch) in package.json, generate a CHANGELOG.md and npm-shrinkwrap.json
+# - In the 'develop' branch will also commit tha change in package.json and CHANGELOG.md.
+#   In case a modification has been done in develop before the commit is pushed the commit will fail.
+#
+# Below Travis Environment variable are expecting to be set :
+# GH_TOKEN: Github personnal token with right to pull, push in the repo
+
+
 set -e # Exit with nonzero exit code if anything fails
 echo "=================================================="
 echo "=============     STARTING BUILD     ============="
 echo "=================================================="
-
 
 echo "Repo slug: ${TRAVIS_REPO_SLUG}"
 IFS='/' read -ra REPO_SLUG_ARRAY <<< "${TRAVIS_REPO_SLUG}"
@@ -12,7 +20,6 @@ echo "Repo slug split: ${REPO_SLUG_ARRAY[*]}"
 OWNER=${REPO_SLUG_ARRAY[0]}
 REPO=${REPO_SLUG_ARRAY[1]}
 SOURCE_BRANCH='develop'
-TARGET_BUILD_BRANCH='uat'
 BUILD_ID=${TRAVIS_BUILD_NUMBER}
 
 
@@ -89,6 +96,8 @@ git tag -a $TAG -m "$TAG"
 git push --tags
 export BUILD_TAG=${TAG}
 
+
+#TARGET_BUILD_BRANCH='uat'
 #echo "== Merging to target build branch $TARGET_BUILD_BRANCH =="
 #git push --force origin $TMP_RELEASE_BRANCH:$TARGET_BUILD_BRANCH
 
