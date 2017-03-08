@@ -66,11 +66,11 @@ git commit -m "[skip ci] Bump version $TAG + Update Changelog"
 #
 
 echo "== Apply change to package.json and CHANGELOG to $SOURCE_BRANCH using rebase =="
-git log -n 5
 git checkout $SOURCE_BRANCH
 git status
+git log -n 5
 git pull origin $SOURCE_BRANCH
-git rebase $TMP_RELEASE_BRANCH
+git pull --rebase $TMP_RELEASE_BRANCH
 echo "== AFTER REBASE =="
 git status
 git log -n 5
